@@ -72,7 +72,7 @@ const PostCard = ({ post, onLike, onComment, onDelete, isCommenting, commentText
 
   const handleLike = async (postId) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/users/${postId}/like`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_BASE_URL}/api/users/${postId}/like`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });
@@ -489,7 +489,7 @@ const App = () => {
       // Simulate network delay
       await new Promise((resolve) => setTimeout(resolve, 800));
 
-      const response = await fetch("http://localhost:3000/api/users");
+      const response = await fetch(import.meta.env.VITE_SERVER_BASE_URL + "/api/users");
       if (response.ok) {
         const data = await response.json();
         console.log(data);
@@ -546,7 +546,7 @@ const App = () => {
         formData.append("image", selectedImage);
       }
 
-      const response = await fetch("http://localhost:3000/api/users", {
+      const response = await fetch(import.meta.env.VITE_SERVER_BASE_URL + "/api/users", {
         method: "POST",
         body: formData,
       });
@@ -570,7 +570,7 @@ const App = () => {
   const handleLike = (postId) => {
     console.log("Like post:", postId);
     // Implement like functionality
-    const response = fetch(`http://localhost:3000/api/users/${postId}/like`, {
+    const response = fetch(`${import.meta.env.VITE_SERVER_BASE_URL}/api/users/${postId}/like`, {
       method: "POST",
     });
     if (response.ok) {
@@ -589,7 +589,7 @@ const App = () => {
     }
   
     try {
-      const response = await fetch(`http://localhost:3000/api/users/${postId}/comment`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_BASE_URL}/api/users/${postId}/comment`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -627,7 +627,7 @@ const App = () => {
   const handleDelete = (postId) => {
     console.log("Delete post:", postId);
     // Implement share functionality
-    const response = fetch(`http://localhost:3000/api/users/${postId}`, {
+    const response = fetch(`${import.meta.env.VITE_SERVER_BASE_URL}/api/users/${postId}`, {
       method: "DELETE",
     });
     if (response.ok) {
